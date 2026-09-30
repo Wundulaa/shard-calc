@@ -42,11 +42,7 @@
 body{margin:0; background:var(--bg); color:var(--ink);
   font-family:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
   font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;}
-.wrap{max-width:1320px; margin:0 auto; padding:0 20px 64px}
-.toprow{display:grid; grid-template-columns:1fr; gap:0}
-@media (min-width:1000px){
-  .toprow{grid-template-columns:minmax(360px,440px) 1fr; gap:32px; align-items:start}
-}
+.wrap{max-width:1080px; margin:0 auto; padding:0 20px 64px}
 h1,h2{font-family:"Big Shoulders Display","IBM Plex Sans",sans-serif; text-wrap:balance; margin:0}
 .mono{font-family:"IBM Plex Mono",ui-monospace,monospace; font-variant-numeric:tabular-nums}
 
@@ -58,7 +54,7 @@ h1,h2{font-family:"Big Shoulders Display","IBM Plex Sans",sans-serif; text-wrap:
     repeating-linear-gradient(-60deg, transparent 0 17px, rgba(var(--accent-rgb),.05) 17px 18px),
     var(--surface);
 }
-.masthead .inner{max-width:1320px; margin:0 auto; padding:30px 20px 26px;
+.masthead .inner{max-width:1080px; margin:0 auto; padding:30px 20px 26px;
   display:flex; justify-content:space-between; align-items:flex-start; gap:16px}
 .eyebrow{font-family:"IBM Plex Mono",monospace; font-size:11.5px; letter-spacing:.16em;
   text-transform:uppercase; color:var(--muted); display:flex; align-items:center; gap:10px; margin:0 0 12px}
@@ -91,19 +87,8 @@ section{margin-bottom:40px; container-type:inline-size}
 }
 .chip:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
 .chip-custom{border-style:dashed}
-.chip-add{border-style:dashed; color:var(--accent); border-color:var(--accent)}
-.chip-add:hover{background:var(--accent-soft)}
 .custom-n{max-width:240px; margin-top:12px}
-.chipgroup{display:inline-flex}
-.chipgroup .chip{border-right:none}
-.chipgroup .chip-x{
-  font-family:"IBM Plex Mono",monospace; font-size:12px; padding:7px 9px; cursor:pointer;
-  border:1px solid var(--line); border-left:none; background:var(--surface); color:var(--muted);
-}
-.chipgroup .chip-x:hover{color:var(--bad); border-color:var(--bad)}
-.chipgroup .chip[aria-pressed=true] + .chip-x{border-color:var(--accent)}
-.addform{display:none; gap:8px; align-items:flex-end; margin-top:12px; max-width:340px}
-.addform.open{display:flex}
+.addform{display:flex; gap:8px; align-items:flex-end; margin-top:12px; max-width:340px}
 .addform input{flex:1}
 .addform button{
   flex:none; height:41px; padding:0 14px; border:1px solid var(--accent); background:var(--accent);
@@ -157,16 +142,9 @@ tbody tr{cursor:pointer}
 tbody tr:hover td{background:var(--sunk)}
 tbody tr.sel td{background:var(--accent-soft)}
 tbody tr.sel td:first-child{box-shadow:inset 4px 0 0 var(--accent)}
-tbody tr.new td:first-child{box-shadow:inset 4px 0 0 var(--good)}
-tbody tr.sel.new td:first-child{box-shadow:inset 4px 0 0 var(--accent), inset 0 0 0 9999px rgba(var(--accent-rgb),.03)}
 td.v{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums}
 td .sub{color:var(--muted); font-size:11.5px; margin-top:3px; display:block; font-variant-numeric:tabular-nums}
 .dead{color:var(--muted)}
-.rowbadge{font-size:9.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--good);
-  background:var(--good-soft); padding:1px 5px; margin-left:7px; vertical-align:1px}
-.row-x{background:none; border:1px solid var(--line); color:var(--muted); width:22px; height:22px;
-  font-family:"IBM Plex Mono",monospace; font-size:12px; cursor:pointer; margin-left:8px; line-height:1}
-.row-x:hover{color:var(--bad); border-color:var(--bad)}
 
 /* ---- warenkorb ---- */
 .cartgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(78px,1fr)); gap:8px}
@@ -212,6 +190,12 @@ td .sub{color:var(--muted); font-size:11.5px; margin-top:3px; display:block; fon
 .drawer-group h3{font-size:11px; letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
   font-family:"IBM Plex Mono",monospace; font-weight:500; margin:0 0 10px; padding-top:16px; border-top:1px solid var(--line-soft)}
 .drawer-group:first-of-type h3{border-top:none; padding-top:0}
+.taglist{display:flex; flex-wrap:wrap; gap:6px; margin:10px 0}
+.tag{display:inline-flex; align-items:center; gap:6px; font-family:"IBM Plex Mono",monospace; font-size:12.5px;
+  font-variant-numeric:tabular-nums; padding:5px 6px 5px 10px; border:1px solid var(--line); background:var(--sunk); color:var(--ink-2)}
+.tag button{background:none; border:none; color:var(--muted); cursor:pointer; font-family:inherit; font-size:12px; padding:2px; line-height:1}
+.tag button:hover{color:var(--bad)}
+.taglist-empty{color:var(--muted); font-size:12.5px; margin:10px 0}
 .reset{width:100%; margin-top:6px; background:none; border:1px solid var(--line); color:var(--ink-2);
   font-family:"IBM Plex Mono",monospace; font-size:12.5px; padding:10px; cursor:pointer}
 .reset:hover{border-color:var(--accent); color:var(--accent)}
@@ -238,7 +222,6 @@ td .sub{color:var(--muted); font-size:11.5px; margin-top:3px; display:block; fon
 
 <div class="wrap">
 
-<div class="toprow">
 <section id="calc">
   <div class="shead">
     <h2>Preis-Check</h2>
@@ -249,12 +232,6 @@ td .sub{color:var(--muted); font-size:11.5px; margin-top:3px; display:block; fon
     <label for="f-customn">Eigene Anzahl Ladungen (einmaliger Check)</label>
     <input type="text" inputmode="numeric" id="f-customn" value="75">
   </div>
-  <form class="addform" id="add-form">
-    <div class="field"><label for="f-newsize">GRÖSSE DAUERHAFT ZUR LISTE HINZUFÜGEN</label>
-      <input type="text" inputmode="numeric" id="f-newsize" placeholder="z. B. 500"></div>
-    <button type="submit">Hinzufügen</button>
-  </form>
-  <p class="addmsg" id="add-msg" hidden></p>
   <div class="pricebar">
     <div class="field"><label for="f-total">Preis fürs ganze Shard</label><input type="text" inputmode="decimal" id="f-total" value="12.000"></div>
     <div class="field"><label for="f-ppc">Preis je Ladung</label><input type="text" inputmode="decimal" id="f-ppc" value="60"></div>
@@ -288,7 +265,6 @@ td .sub{color:var(--muted); font-size:11.5px; margin-top:3px; display:block; fon
     </table>
   </div>
 </section>
-</div>
 
 <section id="cart">
   <div class="shead">
@@ -303,7 +279,8 @@ td .sub{color:var(--muted); font-size:11.5px; margin-top:3px; display:block; fon
   <div id="cart-filled" hidden>
     <div class="scroll cart-lines">
       <table>
-        <thead><tr><th>Größe</th><th>Anzahl</th><th>Ladungen</th><th></th></tr></thead>
+        <!-- written pre-uppercased: text-transform:uppercase turns ß into ẞ in current browsers, which renders badly -->
+        <thead><tr><th>GRÖSSE</th><th>Anzahl</th><th>Ladungen</th><th></th></tr></thead>
         <tbody id="cart-rows"></tbody>
       </table>
     </div>
@@ -345,7 +322,20 @@ td .sub{color:var(--muted); font-size:11.5px; margin-top:3px; display:block; fon
 <div class="backdrop" id="backdrop" hidden></div>
 <aside class="drawer" id="drawer" hidden aria-label="Einstellungen">
   <div class="drawer-head"><h2>Einstellungen</h2><button class="iconbtn" id="btn-close" type="button" aria-label="Schließen">✕</button></div>
-  <p class="hint">Ändert Preis-Check und Rahmen-Tabelle sofort mit.</p>
+  <p class="hint">Ändert Preis-Check, Tabelle und Warenkorb sofort mit — und bleibt gespeichert.</p>
+
+  <div class="drawer-group">
+    <!-- written pre-uppercased: text-transform:uppercase turns ß into ẞ in current browsers, which renders badly -->
+    <h3>SHARD-GRÖSSEN</h3>
+    <p class="hint">Fest: <span id="base-sizes-list"></span></p>
+    <div class="taglist" id="custom-sizes-tags"></div>
+    <form class="addform" id="add-form">
+      <div class="field"><label for="f-newsize">NEUE GRÖSSE</label>
+        <input type="text" inputmode="numeric" id="f-newsize" placeholder="z. B. 500"></div>
+      <button type="submit">Hinzufügen</button>
+    </form>
+    <p class="addmsg" id="add-msg" hidden></p>
+  </div>
 
   <div class="drawer-group">
     <h3>Zielwerte</h3>
@@ -403,7 +393,24 @@ try{
 }catch(e){}
 function saveExtraSizes(){ try{ localStorage.setItem(SIZES_KEY, JSON.stringify(extraSizes)); }catch(e){} }
 function allShards(){ return BASE_SHARDS.concat(extraSizes).sort(function(a,b){return a-b;}); }
-function isCustomSize(n){ return extraSizes.indexOf(n)>-1; }
+
+var SETTINGS_KEY='shard-calc-settings';
+var SETTINGS_IDS=['f-cpc','f-per','f-tn','f-tb','f-bcost','f-bmin','f-over','f-billing','f-target','f-min'];
+function loadSettings(){
+  try{
+    var stored=JSON.parse(localStorage.getItem(SETTINGS_KEY)||'{}');
+    SETTINGS_IDS.forEach(function(id){
+      if(typeof stored[id]==='string') $(id).value=stored[id];
+    });
+  }catch(e){}
+}
+function saveSettings(){
+  try{
+    var obj={};
+    SETTINGS_IDS.forEach(function(id){ obj[id]=$(id).value; });
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify(obj));
+  }catch(e){}
+}
 
 function $(id){return document.getElementById(id);}
 function parseNum(str){
@@ -511,12 +518,8 @@ function renderTable(c){
   $('table-hint').textContent='Rahmen = Preis bei '+fmt(c.target,0)+' Münzen/h (unten) bis '+fmt(c.minWage,0)+' Münzen/h (oben), automatisch im besseren Modus.';
 
   $('tbl-rows').innerHTML=allShards().map(function(n){
-    var custom=isCustomSize(n);
-    var rowClass=(n===selShard?'sel ':'')+(custom?'new':'');
-    var nameCell='<b>'+n+'</b>'+(custom?'<span class="rowbadge">eigene</span>'+
-      '<button type="button" class="row-x" data-remove="'+n+'" aria-label="'+n+' aus der Liste entfernen">×</button>':'');
-    return '<tr class="'+rowClass+'" data-n="'+n+'" tabindex="0">'+
-      '<td>'+nameCell+'</td><td class="v">'+coins(n*c.cpc)+'</td><td class="v">'+rahmenCellHtml(c,n)+'</td></tr>';
+    return '<tr class="'+(n===selShard?'sel':'')+'" data-n="'+n+'" tabindex="0">'+
+      '<td><b>'+n+'</b></td><td class="v">'+coins(n*c.cpc)+'</td><td class="v">'+rahmenCellHtml(c,n)+'</td></tr>';
   }).join('');
 }
 
@@ -585,50 +588,37 @@ var activeChip=selShard;
 function renderShardControls(){
   renderChips();
   renderCartGrid();
+  renderSizeSettings();
 }
 function renderChips(){
-  var addOpen=$('add-form').classList.contains('open');
   var html=allShards().map(function(n){
-    var pressed=(activeChip===n);
-    var btn='<button type="button" class="chip" data-n="'+n+'" aria-pressed="'+pressed+'">'+n+'</button>';
-    if(isCustomSize(n)){
-      return '<span class="chipgroup">'+btn+
-        '<button type="button" class="chip-x" data-remove="'+n+'" aria-label="'+n+' aus der Liste entfernen">×</button></span>';
-    }
-    return btn;
+    return '<button type="button" class="chip" data-n="'+n+'" aria-pressed="'+(activeChip===n)+'">'+n+'</button>';
   }).join('');
   html+='<button type="button" class="chip chip-custom" data-n="custom" aria-pressed="'+(activeChip==='custom')+'">eigene Anzahl</button>';
-  html+='<button type="button" class="chip chip-add" id="chip-add" aria-expanded="'+addOpen+'">+ Größe</button>';
   $('shard-chips').innerHTML=html;
 }
-function closeAddForm(){
-  $('add-form').classList.remove('open');
-  $('add-msg').hidden=true;
-  var chipAdd=$('chip-add'); if(chipAdd) chipAdd.setAttribute('aria-expanded','false');
+function renderSizeSettings(){
+  $('custom-sizes-tags').innerHTML = extraSizes.length
+    ? extraSizes.slice().sort(function(a,b){return a-b;}).map(function(n){
+        return '<span class="tag">'+n+'<button type="button" data-remove="'+n+'" aria-label="'+n+' entfernen">×</button></span>';
+      }).join('')
+    : '<span class="taglist-empty">Noch keine eigenen Größen.</span>';
 }
 function selectShard(n){
   selShard=n; activeChip=n;
   $('custom-field').hidden=true;
-  closeAddForm();
   renderChips();
   render();
 }
 function activateCustom(){
   activeChip='custom';
   $('custom-field').hidden=false;
-  closeAddForm();
   renderChips();
   var v=parseNum($('f-customn').value);
   if(isFinite(v)&&v>0) selShard=Math.round(v);
   render();
   $('f-customn').focus();
   $('f-customn').select();
-}
-function toggleAddForm(){
-  var open=$('add-form').classList.toggle('open');
-  $('chip-add').setAttribute('aria-expanded',String(open));
-  $('add-msg').hidden=true;
-  if(open){ $('f-newsize').focus(); } else { $('f-newsize').value=''; }
 }
 function addSize(){
   var raw=$('f-newsize').value;
@@ -642,26 +632,27 @@ function addSize(){
     $('add-msg').hidden=false;
     return;
   }
+  $('add-msg').hidden=true;
   extraSizes.push(v);
   saveExtraSizes();
   $('f-newsize').value='';
-  closeAddForm();
   selectShard(v);
-  renderCartGrid();
+  renderShardControls();
 }
 function removeSize(n){
   extraSizes=extraSizes.filter(function(v){return v!==n;});
   saveExtraSizes();
   delete cart[n];
-  if(selShard===n){ selectShard(200); renderCartGrid(); }
-  else { renderShardControls(); render(); }
+  if(selShard===n) selectShard(200); else render();
+  renderShardControls();
 }
 $('add-form').addEventListener('submit',function(e){ e.preventDefault(); addSize(); });
+$('custom-sizes-tags').addEventListener('click',function(e){
+  var x=e.target.closest('[data-remove]'); if(!x) return;
+  removeSize(Number(x.dataset.remove));
+});
 $('shard-chips').addEventListener('click',function(e){
-  var x=e.target.closest('.chip-x');
-  if(x){ removeSize(Number(x.dataset.remove)); return; }
   var b=e.target.closest('.chip'); if(!b) return;
-  if(b.id==='chip-add'){ toggleAddForm(); return; }
   if(b.dataset.n==='custom'){ activateCustom(); return; }
   selectShard(Number(b.dataset.n));
 });
@@ -671,13 +662,10 @@ $('f-customn').addEventListener('input',function(){
   render();
 });
 $('tbl-rows').addEventListener('click',function(e){
-  var x=e.target.closest('[data-remove]');
-  if(x){ removeSize(Number(x.dataset.remove)); return; }
   var tr=e.target.closest('tr[data-n]'); if(!tr) return;
   selectShard(Number(tr.dataset.n));
 });
 $('tbl-rows').addEventListener('keydown',function(e){
-  if(e.target.closest('[data-remove]')) return;
   if(e.key!=='Enter' && e.key!==' ') return;
   var tr=e.target.closest('tr[data-n]'); if(!tr) return;
   e.preventDefault(); selectShard(Number(tr.dataset.n));
@@ -725,13 +713,14 @@ $('f-ppc').addEventListener('input',function(){
 
 /* ---- settings fields ---- */
 ['f-cpc','f-per','f-tn','f-tb','f-bcost','f-bmin','f-over','f-target','f-min'].forEach(function(id){
-  $(id).addEventListener('input',function(){render();});
+  $(id).addEventListener('input',function(){ saveSettings(); render(); });
 });
-$('f-billing').addEventListener('change',function(){render();});
+$('f-billing').addEventListener('change',function(){ saveSettings(); render(); });
 $('btn-reset').addEventListener('click',function(){
   Object.keys(DEFAULTS).forEach(function(id){$(id).value=DEFAULTS[id];});
   $('f-customn').value='75';
   ppc=60;
+  try{ localStorage.removeItem(SETTINGS_KEY); }catch(e){}
   selectShard(200);
 });
 
@@ -750,9 +739,7 @@ $('btn-settings').addEventListener('click',openDrawer);
 $('btn-close').addEventListener('click',closeDrawer);
 $('backdrop').addEventListener('click',closeDrawer);
 document.addEventListener('keydown',function(e){
-  if(e.key!=='Escape') return;
-  if(!$('drawer').hidden) closeDrawer();
-  else if($('add-form').classList.contains('open')) closeAddForm();
+  if(e.key==='Escape' && !$('drawer').hidden) closeDrawer();
 });
 
 /* ---- theme toggle ---- */
@@ -784,6 +771,8 @@ if(window.matchMedia){
 }
 applyThemeIcon();
 
+$('base-sizes-list').textContent=BASE_SHARDS.join(', ');
+loadSettings();
 renderShardControls();
 render();
 })();

@@ -20,13 +20,6 @@ Vollwert und der faire Preis-Rahmen — unten der Preis bei Ziel-Stundenlohn,
 oben bei Mindest-Stundenlohn, automatisch im besseren Modus. Zeile anklicken
 wählt die Größe auch im Preis-Check.
 
-**Größe hinzufügen.** Der gestrichelte „+ Größe"-Chip öffnet ein Feld für
-eine neue Shard-Größe, die dauerhaft in Chips und Tabelle einsortiert wird
-(Browser-Speicher, bleibt über Neuladen hinweg erhalten). Eigene Größen
-tragen ein „eigene"-Label und ein × zum Entfernen. Das ist etwas anderes als
-„eigene Anzahl" daneben — die rechnet nur einmalig durch, ohne die Liste zu
-verändern.
-
 **Warenkorb.** Für Mischangebote — jemand verkauft z. B. 8× 300er und
 2× 380er in einem Deal. Größen im großen Klickraster antippen (mehrfach für
 mehrere Stück), jede Zeile im Warenkorb lässt sich per −/+ nachjustieren oder
@@ -34,13 +27,15 @@ per × ganz entfernen. Zeigt laufend Gesamtladungen, Vollwert und den fairen
 Rahmen für den kompletten Warenkorb; optional Gesamtpreis eintragen für
 dieselbe Stundenlohn-Bewertung wie im Preis-Check.
 
-**Einstellungen** (Zahnrad oben rechts). Alle Grundwerte, normalerweise fix:
-Münzen je Ladung, Spawn-Takt mit und ohne Boost, Boost-Preis und -Dauer,
-Rüstzeit je Shard, anteilige oder blockweise Boost-Abrechnung — sowie
-Ziel- und Mindest-Stundenlohn, die die faire Preisspanne festlegen.
-
-Preis-Check und Faire-Preise-Tabelle sitzen ab einer Fensterbreite von etwa
-1000px nebeneinander statt untereinander.
+**Einstellungen** (Zahnrad oben rechts). Ganz oben die Shard-Größen: die
+festen 13 sind nur zur Übersicht aufgelistet, eigene Größen lassen sich dort
+hinzufügen und per × wieder entfernen — erscheinen dann überall (Chips,
+Tabelle, Warenkorb-Raster) gleichwertig neben den festen, ohne eigene
+Markierung. Darunter alle Grundwerte: Münzen je Ladung, Spawn-Takt mit und
+ohne Boost, Boost-Preis und -Dauer, Rüstzeit je Shard, anteilige oder
+blockweise Boost-Abrechnung, Ziel- und Mindest-Stundenlohn. Jede Änderung
+bleibt über Neuladen hinweg erhalten (Browser-Speicher); „Zurücksetzen"
+löscht sie wieder auf die Standardwerte.
 
 ## Modell
 
