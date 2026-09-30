@@ -17,8 +17,10 @@ darunter.
 
 **Faire Preise je Shard-Größe.** Tabelle für alle Shard-Größen im Verkauf:
 Vollwert und der faire Preis-Rahmen — unten der Preis bei Ziel-Stundenlohn,
-oben bei Mindest-Stundenlohn, automatisch im besseren Modus. Zeile anklicken
-wählt die Größe auch im Preis-Check.
+oben bei Mindest-Stundenlohn, automatisch im besseren Modus. Der Rahmen ist
+die eigentlich wichtige Zahl und dementsprechend hervorgehoben (fett, in
+Akzentfarbe); Vollwert ist nur Kontext und bewusst unauffälliger. Zeile
+anklicken wählt die Größe auch im Preis-Check.
 
 **Warenkorb.** Für Mischangebote — jemand verkauft z. B. 8× 300er und
 2× 380er in einem Deal. Über den „◆ Warenkorb"-Button oben rechts (mit
