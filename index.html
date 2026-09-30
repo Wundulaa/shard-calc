@@ -42,7 +42,11 @@
 body{margin:0; background:var(--bg); color:var(--ink);
   font-family:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
   font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;}
-.wrap{max-width:860px; margin:0 auto; padding:0 20px 64px}
+.wrap{max-width:1320px; margin:0 auto; padding:0 20px 64px}
+.toprow{display:grid; grid-template-columns:1fr; gap:0}
+@media (min-width:1000px){
+  .toprow{grid-template-columns:minmax(360px,440px) 1fr; gap:32px; align-items:start}
+}
 h1,h2{font-family:"Big Shoulders Display","IBM Plex Sans",sans-serif; text-wrap:balance; margin:0}
 .mono{font-family:"IBM Plex Mono",ui-monospace,monospace; font-variant-numeric:tabular-nums}
 
@@ -54,7 +58,7 @@ h1,h2{font-family:"Big Shoulders Display","IBM Plex Sans",sans-serif; text-wrap:
     repeating-linear-gradient(-60deg, transparent 0 17px, rgba(var(--accent-rgb),.05) 17px 18px),
     var(--surface);
 }
-.masthead .inner{max-width:860px; margin:0 auto; padding:30px 20px 26px;
+.masthead .inner{max-width:1320px; margin:0 auto; padding:30px 20px 26px;
   display:flex; justify-content:space-between; align-items:flex-start; gap:16px}
 .eyebrow{font-family:"IBM Plex Mono",monospace; font-size:11.5px; letter-spacing:.16em;
   text-transform:uppercase; color:var(--muted); display:flex; align-items:center; gap:10px; margin:0 0 12px}
@@ -69,7 +73,7 @@ h1{font-size:clamp(30px,5.6vw,44px); font-weight:800; letter-spacing:-.005em; te
 .iconbtn:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
 
 /* ---- sections ---- */
-section{margin-bottom:40px}
+section{margin-bottom:40px; container-type:inline-size}
 .shead{margin-bottom:14px; display:flex; flex-wrap:wrap; align-items:baseline; gap:10px}
 .shead h2{font-size:22px; font-weight:800; letter-spacing:.005em; text-transform:uppercase; color:var(--ink)}
 .shead::before{content:""; width:14px; height:14px; border:2px solid var(--accent); transform:rotate(45deg);
@@ -110,7 +114,7 @@ section{margin-bottom:40px}
 
 /* ---- price inputs ---- */
 .pricebar{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:16px 0 20px}
-@media (max-width:480px){.pricebar{grid-template-columns:1fr}}
+@container (max-width:420px){.pricebar{grid-template-columns:1fr}}
 .field{display:flex; flex-direction:column; gap:5px}
 .field label{font-size:11.5px; letter-spacing:.09em; text-transform:uppercase; color:var(--muted);
   font-family:"IBM Plex Mono",monospace}
@@ -120,7 +124,7 @@ input[type=text]:focus-visible,select:focus-visible{outline:2px solid var(--acce
 
 /* ---- result tiles ---- */
 .resultgrid{display:grid; grid-template-columns:1fr 1fr; gap:12px}
-@media (max-width:480px){.resultgrid{grid-template-columns:1fr}}
+@container (max-width:420px){.resultgrid{grid-template-columns:1fr}}
 .stat{border:1px solid var(--line); border-left:4px solid var(--line-soft); background:var(--surface); padding:16px 18px; position:relative}
 .stat.is-best{border-left-color:var(--accent); box-shadow:var(--shadow)}
 .stat-label{font-family:"IBM Plex Mono",monospace; font-size:11.5px; letter-spacing:.09em;
@@ -164,6 +168,36 @@ td .sub{color:var(--muted); font-size:11.5px; margin-top:3px; display:block; fon
   font-family:"IBM Plex Mono",monospace; font-size:12px; cursor:pointer; margin-left:8px; line-height:1}
 .row-x:hover{color:var(--bad); border-color:var(--bad)}
 
+/* ---- warenkorb ---- */
+.cartgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(78px,1fr)); gap:8px}
+.cartbtn{
+  position:relative; aspect-ratio:1.3; border:1px solid var(--line); background:var(--surface);
+  font-family:"IBM Plex Mono",monospace; font-size:17px; font-weight:600; color:var(--ink-2);
+  font-variant-numeric:tabular-nums; cursor:pointer; display:flex; align-items:center; justify-content:center;
+}
+.cartbtn:hover{border-color:var(--accent); color:var(--accent)}
+.cartbtn.active{border-color:var(--accent); background:var(--accent-soft); color:var(--ink); box-shadow:0 0 0 1px var(--accent)}
+.cartbtn .count{
+  position:absolute; top:-8px; right:-8px; min-width:20px; height:20px; padding:0 4px; border-radius:999px;
+  background:var(--accent); color:var(--surface); font-size:11px; font-weight:700; line-height:20px; text-align:center;
+}
+.cart-empty-hint{margin-top:14px}
+.cart-lines{margin-top:16px}
+.carttotal{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px;
+  margin-top:14px; font-size:13.5px; color:var(--ink-2)}
+.carttotal b{font-family:"IBM Plex Mono",monospace; color:var(--ink); font-variant-numeric:tabular-nums}
+.carttotal .reset{width:auto; padding:9px 14px}
+.cart-rahmen-box{margin-top:18px}
+.cart-pricebar{margin-top:18px; max-width:420px}
+.cart-step{background:none; border:1px solid var(--line); color:var(--muted); width:24px; height:24px;
+  font-family:"IBM Plex Mono",monospace; font-size:14px; cursor:pointer; line-height:1}
+.cart-step:hover{border-color:var(--accent); color:var(--accent)}
+.cart-rowx{background:none; border:1px solid var(--line); color:var(--muted); width:24px; height:24px;
+  font-family:"IBM Plex Mono",monospace; font-size:12px; cursor:pointer; margin-left:6px; line-height:1}
+.cart-rowx:hover{color:var(--bad); border-color:var(--bad)}
+.cart-qty{display:inline-flex; align-items:center; gap:8px}
+.cart-qty b{min-width:1.4em; text-align:center}
+
 /* ---- settings drawer ---- */
 .backdrop{position:fixed; inset:0; background:rgba(10,10,8,.4); z-index:40}
 .drawer{position:fixed; top:0; right:0; height:100%; width:min(400px,100vw); background:var(--surface);
@@ -204,6 +238,7 @@ td .sub{color:var(--muted); font-size:11.5px; margin-top:3px; display:block; fon
 
 <div class="wrap">
 
+<div class="toprow">
 <section id="calc">
   <div class="shead">
     <h2>Preis-Check</h2>
@@ -225,17 +260,17 @@ td .sub{color:var(--muted); font-size:11.5px; margin-top:3px; display:block; fon
     <div class="field"><label for="f-ppc">Preis je Ladung</label><input type="text" inputmode="decimal" id="f-ppc" value="60"></div>
   </div>
   <div class="resultgrid">
-    <div class="stat" id="stat-normal">
+    <div class="stat" id="pc-normal-tile">
       <div class="stat-label">Ohne Boost<span class="pick">Empfehlung</span></div>
-      <div><span class="stat-num" id="sn-num">0</span><span class="stat-unit">Münzen/h</span></div>
-      <span class="tierpill" id="sn-pill"></span>
-      <div class="stat-sub" id="sn-sub"></div>
+      <div><span class="stat-num" id="pc-normal-num">0</span><span class="stat-unit">Münzen/h</span></div>
+      <span class="tierpill" id="pc-normal-pill"></span>
+      <div class="stat-sub" id="pc-normal-sub"></div>
     </div>
-    <div class="stat" id="stat-boost">
+    <div class="stat" id="pc-boost-tile">
       <div class="stat-label">Mit Boost<span class="pick">Empfehlung</span></div>
-      <div><span class="stat-num" id="sb-num">0</span><span class="stat-unit">Münzen/h</span></div>
-      <span class="tierpill" id="sb-pill"></span>
-      <div class="stat-sub" id="sb-sub"></div>
+      <div><span class="stat-num" id="pc-boost-num">0</span><span class="stat-unit">Münzen/h</span></div>
+      <span class="tierpill" id="pc-boost-pill"></span>
+      <div class="stat-sub" id="pc-boost-sub"></div>
     </div>
   </div>
 </section>
@@ -251,6 +286,57 @@ td .sub{color:var(--muted); font-size:11.5px; margin-top:3px; display:block; fon
       <thead><tr><th>Shard</th><th>Vollwert</th><th>Fairer Rahmen</th></tr></thead>
       <tbody id="tbl-rows"></tbody>
     </table>
+  </div>
+</section>
+</div>
+
+<section id="cart">
+  <div class="shead">
+    <h2>Warenkorb</h2>
+    <p class="hint">Größen anklicken, um sie zum Warenkorb hinzuzufügen — mehrfach für mehrere Shards derselben Größe, z. B. 8× auf 300 und 2× auf 380.</p>
+  </div>
+
+  <div class="cartgrid" id="cart-grid"></div>
+
+  <p class="hint cart-empty-hint" id="cart-empty">Noch leer — klicke oben auf eine Größe.</p>
+
+  <div id="cart-filled" hidden>
+    <div class="scroll cart-lines">
+      <table>
+        <thead><tr><th>Größe</th><th>Anzahl</th><th>Ladungen</th><th></th></tr></thead>
+        <tbody id="cart-rows"></tbody>
+      </table>
+    </div>
+    <div class="carttotal">
+      <span>Gesamt <b id="cart-total-n">0</b> Ladungen · Vollwert <b id="cart-vollwert">0</b> Münzen</span>
+      <button type="button" class="reset" id="cart-clear">Warenkorb leeren</button>
+    </div>
+
+    <div class="scroll cart-rahmen-box">
+      <table>
+        <thead><tr><th>Fairer Rahmen für den ganzen Warenkorb</th></tr></thead>
+        <tbody><tr><td class="v" id="cart-rahmen"></td></tr></tbody>
+      </table>
+    </div>
+
+    <div class="pricebar cart-pricebar">
+      <div class="field"><label for="f-cart-price">Was wird dafür insgesamt verlangt?</label>
+        <input type="text" inputmode="decimal" id="f-cart-price" placeholder="z. B. 90.000"></div>
+    </div>
+    <div class="resultgrid" id="cart-stats" hidden>
+      <div class="stat" id="wk-normal-tile">
+        <div class="stat-label">Ohne Boost<span class="pick">Empfehlung</span></div>
+        <div><span class="stat-num" id="wk-normal-num">0</span><span class="stat-unit">Münzen/h</span></div>
+        <span class="tierpill" id="wk-normal-pill"></span>
+        <div class="stat-sub" id="wk-normal-sub"></div>
+      </div>
+      <div class="stat" id="wk-boost-tile">
+        <div class="stat-label">Mit Boost<span class="pick">Empfehlung</span></div>
+        <div><span class="stat-num" id="wk-boost-num">0</span><span class="stat-unit">Münzen/h</span></div>
+        <span class="tierpill" id="wk-boost-pill"></span>
+        <div class="stat-sub" id="wk-boost-sub"></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -392,50 +478,95 @@ function tier(hourly,c){
 }
 var TIER_LABEL={good:'Ziel erreicht', warn:'über Mindestlohn', bad:'unter Mindestlohn'};
 
-function renderCalc(c){
-  var n=selShard, price=ppc*n;
+function rahmenCellHtml(c,n){
+  var zb=bestBound(c,n,c.target), mb=bestBound(c,n,c.minWage);
+  var lo=Math.max(zb.price,0), hi=Math.max(mb.price,0);
+  if(hi<=0) return '<span class="dead">nicht drin</span>';
+  var modeTxt = zb.mode===mb.mode ? (zb.mode==='boost'?'mit Boost':'ohne Boost') : (zb.mode==='boost'?'Boost':'normal')+' / '+(mb.mode==='boost'?'Boost':'normal');
+  return coins(lo)+' – '+coins(hi)+
+    '<span class="sub">'+fmt(lo/n,2)+' – '+fmt(hi/n,2)+' / Ladung · '+modeTxt+'</span>';
+}
+
+/* shared by Preis-Check and Warenkorb: fills a pair of stat tiles for a given charge count + price */
+function renderStatTile(prefix,n,price,c){
   var a=calc(c,n,'normal',price), b=calc(c,n,'boost',price);
   var boostBest=b.hourly>a.hourly;
+  [['normal',a,false],['boost',b,true]].forEach(function(row){
+    var mode=row[0], r=row[1], isBoost=row[2];
+    var t=tier(r.hourly,c);
+    $(prefix+'-'+mode+'-num').textContent=fmt(r.hourly,0);
+    $(prefix+'-'+mode+'-num').className='stat-num tier-'+t;
+    $(prefix+'-'+mode+'-pill').textContent=TIER_LABEL[t];
+    $(prefix+'-'+mode+'-pill').className='tierpill tier-'+t;
+    $(prefix+'-'+mode+'-sub').innerHTML='Gewinn '+coins(r.profit)+' · '+dur(r.totalSec)+(isBoost?' · Boost −'+coins(r.boostSpend):'');
+    $(prefix+'-'+mode+'-tile').className='stat'+((isBoost===boostBest)?' is-best':'');
+  });
+}
 
-  var ta=tier(a.hourly,c);
-  $('sn-num').textContent=fmt(a.hourly,0);
-  $('sn-num').className='stat-num tier-'+ta;
-  $('sn-pill').textContent=TIER_LABEL[ta];
-  $('sn-pill').className='tierpill tier-'+ta;
-  $('sn-sub').innerHTML='Gewinn '+coins(a.profit)+' · '+dur(a.totalSec);
-  $('stat-normal').className='stat'+(boostBest?'':' is-best');
-
-  var tb=tier(b.hourly,c);
-  $('sb-num').textContent=fmt(b.hourly,0);
-  $('sb-num').className='stat-num tier-'+tb;
-  $('sb-pill').textContent=TIER_LABEL[tb];
-  $('sb-pill').className='tierpill tier-'+tb;
-  $('sb-sub').innerHTML='Gewinn '+coins(b.profit)+' · '+dur(b.totalSec)+' · Boost −'+coins(b.boostSpend);
-  $('stat-boost').className='stat'+(boostBest?' is-best':'');
+function renderCalc(c){
+  renderStatTile('pc', selShard, ppc*selShard, c);
 }
 
 function renderTable(c){
   $('table-hint').textContent='Rahmen = Preis bei '+fmt(c.target,0)+' Münzen/h (unten) bis '+fmt(c.minWage,0)+' Münzen/h (oben), automatisch im besseren Modus.';
 
   $('tbl-rows').innerHTML=allShards().map(function(n){
-    var vollwert=n*c.cpc;
-    var zb=bestBound(c,n,c.target), mb=bestBound(c,n,c.minWage);
-    var lo=Math.max(zb.price,0), hi=Math.max(mb.price,0);
-    var cellHtml;
-    if(hi<=0){
-      cellHtml='<span class="dead">nicht drin</span>';
-    } else {
-      var modeTxt = zb.mode===mb.mode ? (zb.mode==='boost'?'mit Boost':'ohne Boost') : (zb.mode==='boost'?'Boost':'normal')+' / '+(mb.mode==='boost'?'Boost':'normal');
-      cellHtml=coins(lo)+' – '+coins(hi)+
-        '<span class="sub">'+fmt(lo/n,2)+' – '+fmt(hi/n,2)+' / Ladung · '+modeTxt+'</span>';
-    }
     var custom=isCustomSize(n);
     var rowClass=(n===selShard?'sel ':'')+(custom?'new':'');
     var nameCell='<b>'+n+'</b>'+(custom?'<span class="rowbadge">eigene</span>'+
       '<button type="button" class="row-x" data-remove="'+n+'" aria-label="'+n+' aus der Liste entfernen">×</button>':'');
     return '<tr class="'+rowClass+'" data-n="'+n+'" tabindex="0">'+
-      '<td>'+nameCell+'</td><td class="v">'+coins(vollwert)+'</td><td class="v">'+cellHtml+'</td></tr>';
+      '<td>'+nameCell+'</td><td class="v">'+coins(n*c.cpc)+'</td><td class="v">'+rahmenCellHtml(c,n)+'</td></tr>';
   }).join('');
+}
+
+/* ---- warenkorb ---- */
+var cart={};
+function setCartCount(n,count){
+  if(count<=0) delete cart[n]; else cart[n]=count;
+}
+function renderCartGrid(){
+  $('cart-grid').innerHTML=allShards().map(function(n){
+    var count=cart[n]||0;
+    var badge=count>0?'<span class="count">'+count+'</span>':'';
+    var label=n+'er hinzufügen'+(count>0?', aktuell '+count+' im Warenkorb':'');
+    return '<button type="button" class="cartbtn'+(count>0?' active':'')+'" data-n="'+n+'" aria-label="'+label+'">'+n+badge+'</button>';
+  }).join('');
+}
+function renderCartLines(c){
+  var sizes=Object.keys(cart).map(Number).filter(function(n){return cart[n]>0;}).sort(function(a,b){return a-b;});
+  var hasItems=sizes.length>0;
+  $('cart-empty').hidden=hasItems;
+  $('cart-filled').hidden=!hasItems;
+  if(!hasItems) return;
+
+  var totalN=0, vollwert=0;
+  $('cart-rows').innerHTML=sizes.map(function(n){
+    var count=cart[n];
+    totalN+=n*count;
+    vollwert+=n*count*c.cpc;
+    return '<tr>'+
+      '<td><b>'+n+'</b></td>'+
+      '<td class="v"><span class="cart-qty">'+
+        '<button type="button" class="cart-step" data-dec="'+n+'" aria-label="einen '+n+'er entfernen">−</button>'+
+        '<b>'+count+'</b>'+
+        '<button type="button" class="cart-step" data-inc="'+n+'" aria-label="einen '+n+'er hinzufügen">+</button>'+
+      '</span></td>'+
+      '<td class="v">'+fmt(n*count,0)+'</td>'+
+      '<td><button type="button" class="cart-rowx" data-remove="'+n+'" aria-label="alle '+n+'er entfernen">×</button></td>'+
+    '</tr>';
+  }).join('');
+  $('cart-total-n').textContent=fmt(totalN,0);
+  $('cart-vollwert').textContent=coins(vollwert);
+  $('cart-rahmen').innerHTML=rahmenCellHtml(c,totalN);
+
+  var price=parseNum($('f-cart-price').value);
+  if(isFinite(price)&&price>=0){
+    $('cart-stats').hidden=false;
+    renderStatTile('wk', totalN, price, c);
+  } else {
+    $('cart-stats').hidden=true;
+  }
 }
 
 function syncPriceFields(skip){
@@ -444,13 +575,17 @@ function syncPriceFields(skip){
 }
 function render(skip){
   var c=cfg();
-  renderCalc(c); renderTable(c);
+  renderCalc(c); renderTable(c); renderCartLines(c);
   syncPriceFields(skip);
 }
 
 /* ---- shard chips ---- */
 var activeChip=selShard;
 
+function renderShardControls(){
+  renderChips();
+  renderCartGrid();
+}
 function renderChips(){
   var addOpen=$('add-form').classList.contains('open');
   var html=allShards().map(function(n){
@@ -512,17 +647,19 @@ function addSize(){
   $('f-newsize').value='';
   closeAddForm();
   selectShard(v);
+  renderCartGrid();
+}
+function removeSize(n){
+  extraSizes=extraSizes.filter(function(v){return v!==n;});
+  saveExtraSizes();
+  delete cart[n];
+  if(selShard===n){ selectShard(200); renderCartGrid(); }
+  else { renderShardControls(); render(); }
 }
 $('add-form').addEventListener('submit',function(e){ e.preventDefault(); addSize(); });
 $('shard-chips').addEventListener('click',function(e){
   var x=e.target.closest('.chip-x');
-  if(x){
-    var n=Number(x.dataset.remove);
-    extraSizes=extraSizes.filter(function(v){return v!==n;});
-    saveExtraSizes();
-    if(selShard===n) selectShard(200); else { renderChips(); render(); }
-    return;
-  }
+  if(x){ removeSize(Number(x.dataset.remove)); return; }
   var b=e.target.closest('.chip'); if(!b) return;
   if(b.id==='chip-add'){ toggleAddForm(); return; }
   if(b.dataset.n==='custom'){ activateCustom(); return; }
@@ -535,13 +672,7 @@ $('f-customn').addEventListener('input',function(){
 });
 $('tbl-rows').addEventListener('click',function(e){
   var x=e.target.closest('[data-remove]');
-  if(x){
-    var n=Number(x.dataset.remove);
-    extraSizes=extraSizes.filter(function(v){return v!==n;});
-    saveExtraSizes();
-    if(selShard===n) selectShard(200); else { renderChips(); render(); }
-    return;
-  }
+  if(x){ removeSize(Number(x.dataset.remove)); return; }
   var tr=e.target.closest('tr[data-n]'); if(!tr) return;
   selectShard(Number(tr.dataset.n));
 });
@@ -551,6 +682,34 @@ $('tbl-rows').addEventListener('keydown',function(e){
   var tr=e.target.closest('tr[data-n]'); if(!tr) return;
   e.preventDefault(); selectShard(Number(tr.dataset.n));
 });
+
+/* ---- warenkorb wiring ---- */
+$('cart-grid').addEventListener('click',function(e){
+  var b=e.target.closest('.cartbtn'); if(!b) return;
+  var n=Number(b.dataset.n);
+  setCartCount(n,(cart[n]||0)+1);
+  renderCartGrid();
+  render();
+});
+$('cart-rows').addEventListener('click',function(e){
+  var dec=e.target.closest('[data-dec]'), inc=e.target.closest('[data-inc]'), rem=e.target.closest('[data-remove]');
+  var n;
+  if(dec) n=Number(dec.dataset.dec);
+  else if(inc) n=Number(inc.dataset.inc);
+  else if(rem) n=Number(rem.dataset.remove);
+  else return;
+  if(dec) setCartCount(n,(cart[n]||0)-1);
+  else if(inc) setCartCount(n,(cart[n]||0)+1);
+  else delete cart[n];
+  renderCartGrid();
+  render();
+});
+$('cart-clear').addEventListener('click',function(){
+  cart={};
+  renderCartGrid();
+  render();
+});
+$('f-cart-price').addEventListener('input',function(){ render(); });
 
 /* ---- price fields ---- */
 $('f-total').addEventListener('input',function(){
@@ -625,7 +784,7 @@ if(window.matchMedia){
 }
 applyThemeIcon();
 
-renderChips();
+renderShardControls();
 render();
 })();
 </script>

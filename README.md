@@ -27,10 +27,20 @@ tragen ein „eigene"-Label und ein × zum Entfernen. Das ist etwas anderes als
 „eigene Anzahl" daneben — die rechnet nur einmalig durch, ohne die Liste zu
 verändern.
 
+**Warenkorb.** Für Mischangebote — jemand verkauft z. B. 8× 300er und
+2× 380er in einem Deal. Größen im großen Klickraster antippen (mehrfach für
+mehrere Stück), jede Zeile im Warenkorb lässt sich per −/+ nachjustieren oder
+per × ganz entfernen. Zeigt laufend Gesamtladungen, Vollwert und den fairen
+Rahmen für den kompletten Warenkorb; optional Gesamtpreis eintragen für
+dieselbe Stundenlohn-Bewertung wie im Preis-Check.
+
 **Einstellungen** (Zahnrad oben rechts). Alle Grundwerte, normalerweise fix:
 Münzen je Ladung, Spawn-Takt mit und ohne Boost, Boost-Preis und -Dauer,
 Rüstzeit je Shard, anteilige oder blockweise Boost-Abrechnung — sowie
 Ziel- und Mindest-Stundenlohn, die die faire Preisspanne festlegen.
+
+Preis-Check und Faire-Preise-Tabelle sitzen ab einer Fensterbreite von etwa
+1000px nebeneinander statt untereinander.
 
 ## Modell
 
