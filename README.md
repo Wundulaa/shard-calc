@@ -21,11 +21,13 @@ oben bei Mindest-Stundenlohn, automatisch im besseren Modus. Zeile anklicken
 wählt die Größe auch im Preis-Check.
 
 **Warenkorb.** Für Mischangebote — jemand verkauft z. B. 8× 300er und
-2× 380er in einem Deal. Größen im großen Klickraster antippen (mehrfach für
-mehrere Stück), jede Zeile im Warenkorb lässt sich per −/+ nachjustieren oder
-per × ganz entfernen. Zeigt laufend Gesamtladungen, Vollwert und den fairen
-Rahmen für den kompletten Warenkorb; optional Gesamtpreis eintragen für
-dieselbe Stundenlohn-Bewertung wie im Preis-Check.
+2× 380er in einem Deal. Über den Button unten links („◆ Warenkorb", mit
+Zähler-Badge sobald etwas drin ist) klappt er wie die Einstellungen von
+rechts ein, bleibt beim Scrollen erreichbar. Größen im Klickraster antippen
+(mehrfach für mehrere Stück), jede Zeile lässt sich per −/+ nachjustieren
+oder per × ganz entfernen. Zeigt laufend Gesamtladungen, Vollwert und den
+fairen Rahmen für den kompletten Warenkorb; optional Gesamtpreis eintragen
+für dieselbe Stundenlohn-Bewertung wie im Preis-Check.
 
 **Einstellungen** (Zahnrad oben rechts). Ganz oben die Shard-Größen: die
 festen 13 sind nur zur Übersicht aufgelistet, eigene Größen lassen sich dort

@@ -42,7 +42,7 @@
 body{margin:0; background:var(--bg); color:var(--ink);
   font-family:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
   font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;}
-.wrap{max-width:1080px; margin:0 auto; padding:0 20px 64px}
+.wrap{max-width:1080px; margin:0 auto; padding:0 20px 96px}
 h1,h2{font-family:"Big Shoulders Display","IBM Plex Sans",sans-serif; text-wrap:balance; margin:0}
 .mono{font-family:"IBM Plex Mono",ui-monospace,monospace; font-variant-numeric:tabular-nums}
 
@@ -176,10 +176,27 @@ td .sub{color:var(--muted); font-size:11.5px; margin-top:3px; display:block; fon
 .cart-qty{display:inline-flex; align-items:center; gap:8px}
 .cart-qty b{min-width:1.4em; text-align:center}
 
+/* ---- warenkorb fab ---- */
+.fab{
+  position:fixed; left:20px; bottom:20px; z-index:42;
+  display:flex; align-items:center; gap:9px;
+  padding:13px 18px; border:1px solid var(--line); background:var(--surface); color:var(--ink);
+  font-family:"IBM Plex Mono",monospace; font-size:13px; font-weight:600; letter-spacing:.02em;
+  cursor:pointer; box-shadow:var(--shadow);
+}
+.fab:hover{border-color:var(--accent); color:var(--accent)}
+.fab:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.fab-diamond{width:8px; height:8px; background:var(--accent); transform:rotate(45deg); flex:none}
+.fab-badge{
+  display:inline-flex; align-items:center; justify-content:center; min-width:20px; height:20px; padding:0 5px;
+  background:var(--accent); color:var(--surface); font-size:11px; font-weight:700; font-variant-numeric:tabular-nums;
+}
+
 /* ---- settings drawer ---- */
 .backdrop{position:fixed; inset:0; background:rgba(10,10,8,.4); z-index:40}
 .drawer{position:fixed; top:0; right:0; height:100%; width:min(400px,100vw); background:var(--surface);
-  border-left:1px solid var(--line); box-shadow:var(--shadow); z-index:41; padding:22px 22px 30px; overflow-y:auto}
+  border-left:1px solid var(--line); box-shadow:var(--shadow); z-index:41; padding:22px 22px 30px; overflow-y:auto;
+  container-type:inline-size}
 .drawer-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:6px}
 .drawer-head h2{font-size:19px; font-weight:800; text-transform:uppercase; letter-spacing:.01em}
 .drawer .hint{color:var(--muted); font-size:12.5px; margin:0 0 18px}
@@ -217,6 +234,9 @@ td .sub{color:var(--muted); font-size:11.5px; margin-top:3px; display:block; fon
       <button class="iconbtn" id="btn-theme" type="button" aria-label="Dunkles Design aktivieren" aria-pressed="false">☾</button>
       <button class="iconbtn" id="btn-settings" type="button" aria-label="Einstellungen öffnen">⚙</button>
     </div>
+    <button class="fab" id="btn-cart" type="button" aria-label="Warenkorb öffnen" aria-expanded="false">
+      <span class="fab-diamond"></span>Warenkorb<span class="fab-badge" id="cart-fab-badge" hidden>0</span>
+    </button>
   </div>
 </header>
 
@@ -266,11 +286,13 @@ td .sub{color:var(--muted); font-size:11.5px; margin-top:3px; display:block; fon
   </div>
 </section>
 
-<section id="cart">
-  <div class="shead">
-    <h2>Warenkorb</h2>
-    <p class="hint">Größen anklicken, um sie zum Warenkorb hinzuzufügen — mehrfach für mehrere Shards derselben Größe, z. B. 8× auf 300 und 2× auf 380.</p>
-  </div>
+</div>
+
+<div class="backdrop" id="backdrop" hidden></div>
+
+<aside class="drawer" id="cart-panel" hidden aria-label="Warenkorb">
+  <div class="drawer-head"><h2>Warenkorb</h2><button class="iconbtn" id="btn-cart-close" type="button" aria-label="Schließen">✕</button></div>
+  <p class="hint">Größen anklicken, um sie zum Warenkorb hinzuzufügen — mehrfach für mehrere Shards derselben Größe, z. B. 8× auf 300 und 2× auf 380.</p>
 
   <div class="cartgrid" id="cart-grid"></div>
 
@@ -315,11 +337,8 @@ td .sub{color:var(--muted); font-size:11.5px; margin-top:3px; display:block; fon
       </div>
     </div>
   </div>
-</section>
+</aside>
 
-</div>
-
-<div class="backdrop" id="backdrop" hidden></div>
 <aside class="drawer" id="drawer" hidden aria-label="Einstellungen">
   <div class="drawer-head"><h2>Einstellungen</h2><button class="iconbtn" id="btn-close" type="button" aria-label="Schließen">✕</button></div>
   <p class="hint">Ändert Preis-Check, Tabelle und Warenkorb sofort mit — und bleibt gespeichert.</p>
@@ -541,6 +560,8 @@ function renderCartLines(c){
   var hasItems=sizes.length>0;
   $('cart-empty').hidden=hasItems;
   $('cart-filled').hidden=!hasItems;
+  $('cart-fab-badge').textContent=sizes.length;
+  $('cart-fab-badge').hidden=!hasItems;
   if(!hasItems) return;
 
   var totalN=0, vollwert=0;
@@ -724,22 +745,46 @@ $('btn-reset').addEventListener('click',function(){
   selectShard(200);
 });
 
-/* ---- settings drawer ---- */
+/* ---- settings drawer + warenkorb panel (share one backdrop) ---- */
+function syncBackdrop(){
+  var anyOpen = !$('drawer').hidden || !$('cart-panel').hidden;
+  $('backdrop').hidden = !anyOpen;
+  document.documentElement.style.overflow = anyOpen ? 'hidden' : '';
+}
 function openDrawer(){
-  $('drawer').hidden=false; $('backdrop').hidden=false;
-  document.documentElement.style.overflow='hidden';
+  $('cart-panel').hidden=true; $('btn-cart').setAttribute('aria-expanded','false');
+  $('drawer').hidden=false;
+  syncBackdrop();
   $('btn-close').focus();
 }
 function closeDrawer(){
-  $('drawer').hidden=true; $('backdrop').hidden=true;
-  document.documentElement.style.overflow='';
+  $('drawer').hidden=true;
+  syncBackdrop();
   $('btn-settings').focus();
+}
+function openCartPanel(){
+  $('drawer').hidden=true;
+  $('cart-panel').hidden=false; $('btn-cart').setAttribute('aria-expanded','true');
+  syncBackdrop();
+  $('btn-cart-close').focus();
+}
+function closeCartPanel(){
+  $('cart-panel').hidden=true; $('btn-cart').setAttribute('aria-expanded','false');
+  syncBackdrop();
+  $('btn-cart').focus();
 }
 $('btn-settings').addEventListener('click',openDrawer);
 $('btn-close').addEventListener('click',closeDrawer);
-$('backdrop').addEventListener('click',closeDrawer);
+$('btn-cart').addEventListener('click',openCartPanel);
+$('btn-cart-close').addEventListener('click',closeCartPanel);
+$('backdrop').addEventListener('click',function(){
+  if(!$('drawer').hidden) closeDrawer();
+  else if(!$('cart-panel').hidden) closeCartPanel();
+});
 document.addEventListener('keydown',function(e){
-  if(e.key==='Escape' && !$('drawer').hidden) closeDrawer();
+  if(e.key!=='Escape') return;
+  if(!$('drawer').hidden) closeDrawer();
+  else if(!$('cart-panel').hidden) closeCartPanel();
 });
 
 /* ---- theme toggle ---- */
