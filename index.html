@@ -5,54 +5,61 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script>(function(){try{var t=localStorage.getItem('shard-calc-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
 <title>Spawner-Shard-Rechner</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
 <style>
 :root{
-  --bg:#EAEBE4; --surface:#F6F7F1; --sunk:#E2E4DA; --line:#CBCEC0; --line-soft:#DBDDD2;
-  --ink:#191C17; --ink-2:#454B40; --muted:#6E7566;
-  --accent:#9A6614; --accent-2:#B4791E; --accent-soft:#F0E4C6;
-  --good:#2C7449; --good-soft:#D8EADD;
+  --bg:#E7EBE9; --surface:#F5F8F7; --sunk:#DCE2E0; --line:#C2CBC7; --line-soft:#D4DAD7;
+  --ink:#101A1B; --ink-2:#3C4948; --muted:#69756F;
+  --accent:#0E8E93; --accent-2:#0BA6A6; --accent-soft:#D2EEEC; --accent-rgb:14,142,147;
+  --good:#237A46; --good-soft:#D6ECDD;
   --warn:#96661A; --warn-soft:#F3E6C8;
-  --bad:#A9382C; --bad-soft:#F3DCD8;
-  --shadow:0 1px 2px rgba(25,28,23,.06), 0 8px 24px -12px rgba(25,28,23,.22);
+  --bad:#AB3226; --bad-soft:#F4DBD6;
+  --shadow:0 1px 2px rgba(16,26,27,.07), 0 8px 24px -12px rgba(16,26,27,.24);
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#15171A; --surface:#1D2024; --sunk:#23272C; --line:#343A41; --line-soft:#2A2F35;
-    --ink:#E9EBE3; --ink-2:#BFC5B8; --muted:#8B9285;
-    --accent:#E0A93F; --accent-2:#EBBB5B; --accent-soft:#3B2F14;
-    --good:#5FC98D; --good-soft:#15301F;
-    --warn:#D9A945; --warn-soft:#332813;
-    --bad:#E8796B; --bad-soft:#331B18;
-    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -14px rgba(0,0,0,.7);
+    --bg:#0D1416; --surface:#131C1E; --sunk:#1A2426; --line:#2B3A3C; --line-soft:#202C2E;
+    --ink:#E8F1EF; --ink-2:#AEC0BD; --muted:#71827E;
+    --accent:#3FD6DB; --accent-2:#79E6E9; --accent-soft:#123739; --accent-rgb:63,214,219;
+    --good:#4ECC80; --good-soft:#112B1B;
+    --warn:#E3B33C; --warn-soft:#33280F;
+    --bad:#F17364; --bad-soft:#391A16;
+    --shadow:0 1px 2px rgba(0,0,0,.45), 0 10px 28px -14px rgba(0,0,0,.75);
   }
 }
 :root[data-theme="dark"]{
-  --bg:#15171A; --surface:#1D2024; --sunk:#23272C; --line:#343A41; --line-soft:#2A2F35;
-  --ink:#E9EBE3; --ink-2:#BFC5B8; --muted:#8B9285;
-  --accent:#E0A93F; --accent-2:#EBBB5B; --accent-soft:#3B2F14;
-  --good:#5FC98D; --good-soft:#15301F;
-  --warn:#D9A945; --warn-soft:#332813;
-  --bad:#E8796B; --bad-soft:#331B18;
-  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -14px rgba(0,0,0,.7);
+  --bg:#0D1416; --surface:#131C1E; --sunk:#1A2426; --line:#2B3A3C; --line-soft:#202C2E;
+  --ink:#E8F1EF; --ink-2:#AEC0BD; --muted:#71827E;
+  --accent:#3FD6DB; --accent-2:#79E6E9; --accent-soft:#123739; --accent-rgb:63,214,219;
+  --good:#4ECC80; --good-soft:#112B1B;
+  --warn:#E3B33C; --warn-soft:#33280F;
+  --bad:#F17364; --bad-soft:#391A16;
+  --shadow:0 1px 2px rgba(0,0,0,.45), 0 10px 28px -14px rgba(0,0,0,.75);
 }
 
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 body{margin:0; background:var(--bg); color:var(--ink);
   font-family:"IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
   font-size:15px; line-height:1.55; -webkit-font-smoothing:antialiased;}
 .wrap{max-width:860px; margin:0 auto; padding:0 20px 64px}
-h1,h2{font-family:"Chakra Petch","IBM Plex Sans",sans-serif; text-wrap:balance; margin:0}
+h1,h2{font-family:"Big Shoulders Display","IBM Plex Sans",sans-serif; text-wrap:balance; margin:0}
 .mono{font-family:"IBM Plex Mono",ui-monospace,monospace; font-variant-numeric:tabular-nums}
 
 /* ---- header ---- */
-.masthead{border-bottom:1px solid var(--line); background:var(--surface); margin-bottom:32px}
-.masthead .inner{max-width:860px; margin:0 auto; padding:28px 20px 24px;
+.masthead{
+  border-bottom:1px solid var(--line); margin-bottom:32px; position:relative; overflow:hidden;
+  background:
+    repeating-linear-gradient(60deg, transparent 0 17px, rgba(var(--accent-rgb),.07) 17px 18px),
+    repeating-linear-gradient(-60deg, transparent 0 17px, rgba(var(--accent-rgb),.05) 17px 18px),
+    var(--surface);
+}
+.masthead .inner{max-width:860px; margin:0 auto; padding:30px 20px 26px;
   display:flex; justify-content:space-between; align-items:flex-start; gap:16px}
 .eyebrow{font-family:"IBM Plex Mono",monospace; font-size:11.5px; letter-spacing:.16em;
-  text-transform:uppercase; color:var(--muted); display:flex; align-items:center; gap:9px; margin:0 0 10px}
-.eyebrow::before{content:""; width:8px; height:8px; background:var(--accent); flex:none}
-h1{font-size:clamp(24px,4.4vw,34px); font-weight:700; letter-spacing:-.015em; margin:0 0 6px}
+  text-transform:uppercase; color:var(--muted); display:flex; align-items:center; gap:10px; margin:0 0 12px}
+.eyebrow::before{content:""; width:7px; height:7px; background:var(--accent); flex:none; transform:rotate(45deg)}
+h1{font-size:clamp(30px,5.6vw,44px); font-weight:800; letter-spacing:-.005em; text-transform:uppercase; margin:0 0 8px}
 .lede{max-width:48ch; color:var(--ink-2); font-size:15px; margin:0}
 .headerbtns{display:flex; gap:8px; flex:none; margin-top:2px}
 .iconbtn{flex:none; width:40px; height:40px; border:1px solid var(--line); background:var(--surface);
@@ -63,19 +70,43 @@ h1{font-size:clamp(24px,4.4vw,34px); font-weight:700; letter-spacing:-.015em; ma
 
 /* ---- sections ---- */
 section{margin-bottom:40px}
-.shead{margin-bottom:14px}
-.shead h2{font-size:18px; font-weight:600; letter-spacing:.01em}
-.shead .hint{color:var(--muted); font-size:13px; margin:4px 0 0; max-width:52ch}
+.shead{margin-bottom:14px; display:flex; flex-wrap:wrap; align-items:baseline; gap:10px}
+.shead h2{font-size:22px; font-weight:800; letter-spacing:.005em; text-transform:uppercase; color:var(--ink)}
+.shead::before{content:""; width:14px; height:14px; border:2px solid var(--accent); transform:rotate(45deg);
+  flex:none; margin-top:3px}
+.shead .hint{color:var(--muted); font-size:13px; margin:4px 0 0 -4px; max-width:52ch; flex-basis:100%}
 
 /* ---- shard chips ---- */
-.chips{display:flex; flex-wrap:wrap; gap:6px}
+.chips{display:flex; flex-wrap:wrap; gap:7px; align-items:center}
 .chip{font-family:"IBM Plex Mono",monospace; font-size:13px; font-variant-numeric:tabular-nums;
   padding:7px 12px; border:1px solid var(--line); background:var(--surface); color:var(--ink-2); cursor:pointer;}
 .chip:hover{border-color:var(--accent); color:var(--accent)}
-.chip[aria-pressed=true]{background:var(--ink); color:var(--bg); border-color:var(--ink); border-style:solid}
+.chip[aria-pressed=true]{
+  background:var(--accent-soft); color:var(--ink); border-color:var(--accent); border-style:solid;
+  box-shadow:0 0 0 1px var(--accent); font-weight:600;
+}
 .chip:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
 .chip-custom{border-style:dashed}
+.chip-add{border-style:dashed; color:var(--accent); border-color:var(--accent)}
+.chip-add:hover{background:var(--accent-soft)}
 .custom-n{max-width:240px; margin-top:12px}
+.chipgroup{display:inline-flex}
+.chipgroup .chip{border-right:none}
+.chipgroup .chip-x{
+  font-family:"IBM Plex Mono",monospace; font-size:12px; padding:7px 9px; cursor:pointer;
+  border:1px solid var(--line); border-left:none; background:var(--surface); color:var(--muted);
+}
+.chipgroup .chip-x:hover{color:var(--bad); border-color:var(--bad)}
+.chipgroup .chip[aria-pressed=true] + .chip-x{border-color:var(--accent)}
+.addform{display:none; gap:8px; align-items:flex-end; margin-top:12px; max-width:340px}
+.addform.open{display:flex}
+.addform input{flex:1}
+.addform button{
+  flex:none; height:41px; padding:0 14px; border:1px solid var(--accent); background:var(--accent);
+  color:var(--surface); font-family:"IBM Plex Mono",monospace; font-size:13px; font-weight:600; cursor:pointer;
+}
+.addform button:hover{background:var(--accent-2); border-color:var(--accent-2)}
+.addmsg{font-family:"IBM Plex Mono",monospace; font-size:12px; color:var(--bad); margin:8px 0 0; max-width:340px}
 
 /* ---- price inputs ---- */
 .pricebar{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:16px 0 20px}
@@ -96,13 +127,19 @@ input[type=text]:focus-visible,select:focus-visible{outline:2px solid var(--acce
   text-transform:uppercase; color:var(--muted); display:flex; justify-content:space-between; align-items:center}
 .pick{font-size:10px; letter-spacing:.08em; background:var(--accent-soft); color:var(--accent); padding:2px 7px; visibility:hidden}
 .is-best .pick{visibility:visible}
-.stat-num{font-family:"Chakra Petch",sans-serif; font-variant-numeric:tabular-nums;
-  font-size:clamp(26px,5.5vw,36px); font-weight:700; line-height:1.15; margin-top:8px}
+.stat-num{font-family:"Big Shoulders Display",sans-serif; font-variant-numeric:tabular-nums;
+  font-size:clamp(30px,6.2vw,42px); font-weight:800; line-height:1; margin-top:10px}
 .stat-num.tier-good{color:var(--good)}
 .stat-num.tier-warn{color:var(--warn)}
 .stat-num.tier-bad{color:var(--bad)}
 .stat-unit{font-size:13px; color:var(--muted); margin-left:6px; font-weight:400; font-family:"IBM Plex Mono",monospace}
-.stat-sub{font-size:12.5px; color:var(--ink-2); margin-top:9px; font-family:"IBM Plex Mono",monospace}
+.tierpill{display:inline-flex; align-items:center; gap:5px; font-family:"IBM Plex Mono",monospace; font-size:10.5px;
+  letter-spacing:.07em; text-transform:uppercase; padding:3px 8px; margin-top:9px; border:1px solid currentColor}
+.tierpill::before{content:""; width:6px; height:6px; transform:rotate(45deg); background:currentColor; flex:none}
+.tierpill.tier-good{color:var(--good); background:var(--good-soft)}
+.tierpill.tier-warn{color:var(--warn); background:var(--warn-soft)}
+.tierpill.tier-bad{color:var(--bad); background:var(--bad-soft)}
+.stat-sub{font-size:12.5px; color:var(--ink-2); margin-top:10px; font-family:"IBM Plex Mono",monospace}
 
 /* ---- table ---- */
 .scroll{overflow-x:auto; border:1px solid var(--line); background:var(--surface)}
@@ -115,16 +152,24 @@ tbody tr:last-child td{border-bottom:none}
 tbody tr{cursor:pointer}
 tbody tr:hover td{background:var(--sunk)}
 tbody tr.sel td{background:var(--accent-soft)}
+tbody tr.sel td:first-child{box-shadow:inset 4px 0 0 var(--accent)}
+tbody tr.new td:first-child{box-shadow:inset 4px 0 0 var(--good)}
+tbody tr.sel.new td:first-child{box-shadow:inset 4px 0 0 var(--accent), inset 0 0 0 9999px rgba(var(--accent-rgb),.03)}
 td.v{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums}
 td .sub{color:var(--muted); font-size:11.5px; margin-top:3px; display:block; font-variant-numeric:tabular-nums}
 .dead{color:var(--muted)}
+.rowbadge{font-size:9.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--good);
+  background:var(--good-soft); padding:1px 5px; margin-left:7px; vertical-align:1px}
+.row-x{background:none; border:1px solid var(--line); color:var(--muted); width:22px; height:22px;
+  font-family:"IBM Plex Mono",monospace; font-size:12px; cursor:pointer; margin-left:8px; line-height:1}
+.row-x:hover{color:var(--bad); border-color:var(--bad)}
 
 /* ---- settings drawer ---- */
 .backdrop{position:fixed; inset:0; background:rgba(10,10,8,.4); z-index:40}
 .drawer{position:fixed; top:0; right:0; height:100%; width:min(400px,100vw); background:var(--surface);
   border-left:1px solid var(--line); box-shadow:var(--shadow); z-index:41; padding:22px 22px 30px; overflow-y:auto}
 .drawer-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:6px}
-.drawer-head h2{font-size:16px}
+.drawer-head h2{font-size:19px; font-weight:800; text-transform:uppercase; letter-spacing:.01em}
 .drawer .hint{color:var(--muted); font-size:12.5px; margin:0 0 18px}
 .drawer .grid-fields{display:grid; grid-template-columns:1fr 1fr; gap:14px}
 @media (max-width:400px){.drawer .grid-fields{grid-template-columns:1fr}}
@@ -166,9 +211,15 @@ td .sub{color:var(--muted); font-size:11.5px; margin-top:3px; display:block; fon
   </div>
   <div class="chips" id="shard-chips"></div>
   <div class="field custom-n" id="custom-field" hidden>
-    <label for="f-customn">Eigene Anzahl Ladungen</label>
+    <label for="f-customn">Eigene Anzahl Ladungen (einmaliger Check)</label>
     <input type="text" inputmode="numeric" id="f-customn" value="75">
   </div>
+  <form class="addform" id="add-form">
+    <div class="field"><label for="f-newsize">Größe dauerhaft zur Liste hinzufügen</label>
+      <input type="text" inputmode="numeric" id="f-newsize" placeholder="z. B. 500"></div>
+    <button type="submit">Hinzufügen</button>
+  </form>
+  <p class="addmsg" id="add-msg" hidden></p>
   <div class="pricebar">
     <div class="field"><label for="f-total">Preis fürs ganze Shard</label><input type="text" inputmode="decimal" id="f-total" value="12.000"></div>
     <div class="field"><label for="f-ppc">Preis je Ladung</label><input type="text" inputmode="decimal" id="f-ppc" value="60"></div>
@@ -177,11 +228,13 @@ td .sub{color:var(--muted); font-size:11.5px; margin-top:3px; display:block; fon
     <div class="stat" id="stat-normal">
       <div class="stat-label">Ohne Boost<span class="pick">Empfehlung</span></div>
       <div><span class="stat-num" id="sn-num">0</span><span class="stat-unit">Münzen/h</span></div>
+      <span class="tierpill" id="sn-pill"></span>
       <div class="stat-sub" id="sn-sub"></div>
     </div>
     <div class="stat" id="stat-boost">
       <div class="stat-label">Mit Boost<span class="pick">Empfehlung</span></div>
       <div><span class="stat-num" id="sb-num">0</span><span class="stat-unit">Münzen/h</span></div>
+      <span class="tierpill" id="sb-pill"></span>
       <div class="stat-sub" id="sb-sub"></div>
     </div>
   </div>
@@ -251,9 +304,19 @@ td .sub{color:var(--muted); font-size:11.5px; margin-top:3px; display:block; fon
 <script>
 (function(){
 "use strict";
-var SHARDS=[30,40,60,100,120,150,200,300,330,360,380,390,405];
+var BASE_SHARDS=[30,40,60,100,120,150,200,300,330,360,380,390,405];
+var SIZES_KEY='shard-calc-sizes';
 var DEFAULTS={'f-cpc':'91,44','f-per':'5','f-tn':'10','f-tb':'3','f-bcost':'4.000','f-bmin':'10','f-over':'0','f-target':'100.000','f-min':'40.000'};
 var selShard=200, ppc=60;
+
+var extraSizes=[];
+try{
+  var stored=JSON.parse(localStorage.getItem(SIZES_KEY)||'[]');
+  if(Array.isArray(stored)) extraSizes=stored.filter(function(v){return Number.isInteger(v)&&v>0;});
+}catch(e){}
+function saveExtraSizes(){ try{ localStorage.setItem(SIZES_KEY, JSON.stringify(extraSizes)); }catch(e){} }
+function allShards(){ return BASE_SHARDS.concat(extraSizes).sort(function(a,b){return a-b;}); }
+function isCustomSize(n){ return extraSizes.indexOf(n)>-1; }
 
 function $(id){return document.getElementById(id);}
 function parseNum(str){
@@ -326,19 +389,26 @@ function tier(hourly,c){
   if(hourly>=c.minWage) return 'warn';
   return 'bad';
 }
+var TIER_LABEL={good:'Ziel erreicht', warn:'über Mindestlohn', bad:'unter Mindestlohn'};
 
 function renderCalc(c){
   var n=selShard, price=ppc*n;
   var a=calc(c,n,'normal',price), b=calc(c,n,'boost',price);
   var boostBest=b.hourly>a.hourly;
 
+  var ta=tier(a.hourly,c);
   $('sn-num').textContent=fmt(a.hourly,0);
-  $('sn-num').className='stat-num tier-'+tier(a.hourly,c);
+  $('sn-num').className='stat-num tier-'+ta;
+  $('sn-pill').textContent=TIER_LABEL[ta];
+  $('sn-pill').className='tierpill tier-'+ta;
   $('sn-sub').innerHTML='Gewinn '+coins(a.profit)+' · '+dur(a.totalSec);
   $('stat-normal').className='stat'+(boostBest?'':' is-best');
 
+  var tb=tier(b.hourly,c);
   $('sb-num').textContent=fmt(b.hourly,0);
-  $('sb-num').className='stat-num tier-'+tier(b.hourly,c);
+  $('sb-num').className='stat-num tier-'+tb;
+  $('sb-pill').textContent=TIER_LABEL[tb];
+  $('sb-pill').className='tierpill tier-'+tb;
   $('sb-sub').innerHTML='Gewinn '+coins(b.profit)+' · '+dur(b.totalSec)+' · Boost −'+coins(b.boostSpend);
   $('stat-boost').className='stat'+(boostBest?' is-best':'');
 }
@@ -346,7 +416,7 @@ function renderCalc(c){
 function renderTable(c){
   $('table-hint').textContent='Rahmen = Preis bei '+fmt(c.target,0)+' Münzen/h (unten) bis '+fmt(c.minWage,0)+' Münzen/h (oben), automatisch im besseren Modus.';
 
-  $('tbl-rows').innerHTML=SHARDS.map(function(n){
+  $('tbl-rows').innerHTML=allShards().map(function(n){
     var vollwert=n*c.cpc;
     var zb=bestBound(c,n,c.target), mb=bestBound(c,n,c.minWage);
     var lo=Math.max(zb.price,0), hi=Math.max(mb.price,0);
@@ -358,8 +428,12 @@ function renderTable(c){
       cellHtml=coins(lo)+' – '+coins(hi)+
         '<span class="sub">'+fmt(lo/n,2)+' – '+fmt(hi/n,2)+' / Ladung · '+modeTxt+'</span>';
     }
-    return '<tr class="'+(n===selShard?'sel':'')+'" data-n="'+n+'" tabindex="0">'+
-      '<td><b>'+n+'</b></td><td class="v">'+coins(vollwert)+'</td><td class="v">'+cellHtml+'</td></tr>';
+    var custom=isCustomSize(n);
+    var rowClass=(n===selShard?'sel ':'')+(custom?'new':'');
+    var nameCell='<b>'+n+'</b>'+(custom?'<span class="rowbadge">eigene</span>'+
+      '<button type="button" class="row-x" data-remove="'+n+'" aria-label="'+n+' aus der Liste entfernen">×</button>':'');
+    return '<tr class="'+rowClass+'" data-n="'+n+'" tabindex="0">'+
+      '<td>'+nameCell+'</td><td class="v">'+coins(vollwert)+'</td><td class="v">'+cellHtml+'</td></tr>';
   }).join('');
 }
 
@@ -374,32 +448,82 @@ function render(skip){
 }
 
 /* ---- shard chips ---- */
-$('shard-chips').innerHTML=SHARDS.map(function(n){
-  return '<button type="button" class="chip" data-n="'+n+'" aria-pressed="'+(n===selShard)+'">'+n+'</button>';
-}).join('') + '<button type="button" class="chip chip-custom" data-n="custom" aria-pressed="false">eigene Anzahl</button>';
+var activeChip=selShard;
 
-function markChips(activeData){
-  Array.prototype.forEach.call($('shard-chips').children,function(el){
-    el.setAttribute('aria-pressed', String(el.dataset.n===String(activeData)));
-  });
+function renderChips(){
+  var addOpen=$('add-form').classList.contains('open');
+  var html=allShards().map(function(n){
+    var pressed=(activeChip===n);
+    var btn='<button type="button" class="chip" data-n="'+n+'" aria-pressed="'+pressed+'">'+n+'</button>';
+    if(isCustomSize(n)){
+      return '<span class="chipgroup">'+btn+
+        '<button type="button" class="chip-x" data-remove="'+n+'" aria-label="'+n+' aus der Liste entfernen">×</button></span>';
+    }
+    return btn;
+  }).join('');
+  html+='<button type="button" class="chip chip-custom" data-n="custom" aria-pressed="'+(activeChip==='custom')+'">eigene Anzahl</button>';
+  html+='<button type="button" class="chip chip-add" id="chip-add" aria-expanded="'+addOpen+'">+ Größe</button>';
+  $('shard-chips').innerHTML=html;
+}
+function closeAddForm(){
+  $('add-form').classList.remove('open');
+  $('add-msg').hidden=true;
+  var chipAdd=$('chip-add'); if(chipAdd) chipAdd.setAttribute('aria-expanded','false');
 }
 function selectShard(n){
-  selShard=n;
-  markChips(n);
+  selShard=n; activeChip=n;
   $('custom-field').hidden=true;
+  closeAddForm();
+  renderChips();
   render();
 }
 function activateCustom(){
-  markChips('custom');
+  activeChip='custom';
   $('custom-field').hidden=false;
+  closeAddForm();
+  renderChips();
   var v=parseNum($('f-customn').value);
   if(isFinite(v)&&v>0) selShard=Math.round(v);
   render();
   $('f-customn').focus();
   $('f-customn').select();
 }
+function toggleAddForm(){
+  var open=$('add-form').classList.toggle('open');
+  $('chip-add').setAttribute('aria-expanded',String(open));
+  $('add-msg').hidden=true;
+  if(open){ $('f-newsize').focus(); } else { $('f-newsize').value=''; }
+}
+function addSize(){
+  var raw=$('f-newsize').value;
+  var v=parseNum(raw);
+  var msg='';
+  if(!isFinite(v)||v<=0||Math.round(v)!==v) msg='Bitte eine ganze Zahl größer 0 eingeben.';
+  else if(v>1000000) msg='Das ist unrealistisch groß — bitte eine kleinere Zahl.';
+  else if(allShards().indexOf(v)>-1) msg='Diese Größe gibt es schon in der Liste.';
+  if(msg){
+    $('add-msg').textContent=msg;
+    $('add-msg').hidden=false;
+    return;
+  }
+  extraSizes.push(v);
+  saveExtraSizes();
+  $('f-newsize').value='';
+  closeAddForm();
+  selectShard(v);
+}
+$('add-form').addEventListener('submit',function(e){ e.preventDefault(); addSize(); });
 $('shard-chips').addEventListener('click',function(e){
+  var x=e.target.closest('.chip-x');
+  if(x){
+    var n=Number(x.dataset.remove);
+    extraSizes=extraSizes.filter(function(v){return v!==n;});
+    saveExtraSizes();
+    if(selShard===n) selectShard(200); else { renderChips(); render(); }
+    return;
+  }
   var b=e.target.closest('.chip'); if(!b) return;
+  if(b.id==='chip-add'){ toggleAddForm(); return; }
   if(b.dataset.n==='custom'){ activateCustom(); return; }
   selectShard(Number(b.dataset.n));
 });
@@ -409,10 +533,19 @@ $('f-customn').addEventListener('input',function(){
   render();
 });
 $('tbl-rows').addEventListener('click',function(e){
+  var x=e.target.closest('[data-remove]');
+  if(x){
+    var n=Number(x.dataset.remove);
+    extraSizes=extraSizes.filter(function(v){return v!==n;});
+    saveExtraSizes();
+    if(selShard===n) selectShard(200); else { renderChips(); render(); }
+    return;
+  }
   var tr=e.target.closest('tr[data-n]'); if(!tr) return;
   selectShard(Number(tr.dataset.n));
 });
 $('tbl-rows').addEventListener('keydown',function(e){
+  if(e.target.closest('[data-remove]')) return;
   if(e.key!=='Enter' && e.key!==' ') return;
   var tr=e.target.closest('tr[data-n]'); if(!tr) return;
   e.preventDefault(); selectShard(Number(tr.dataset.n));
@@ -438,10 +571,8 @@ $('f-billing').addEventListener('change',function(){render();});
 $('btn-reset').addEventListener('click',function(){
   Object.keys(DEFAULTS).forEach(function(id){$(id).value=DEFAULTS[id];});
   $('f-customn').value='75';
-  selShard=200; ppc=60;
-  markChips(200);
-  $('custom-field').hidden=true;
-  render();
+  ppc=60;
+  selectShard(200);
 });
 
 /* ---- settings drawer ---- */
@@ -459,7 +590,9 @@ $('btn-settings').addEventListener('click',openDrawer);
 $('btn-close').addEventListener('click',closeDrawer);
 $('backdrop').addEventListener('click',closeDrawer);
 document.addEventListener('keydown',function(e){
-  if(e.key==='Escape' && !$('drawer').hidden) closeDrawer();
+  if(e.key!=='Escape') return;
+  if(!$('drawer').hidden) closeDrawer();
+  else if($('add-form').classList.contains('open')) closeAddForm();
 });
 
 /* ---- theme toggle ---- */
@@ -491,6 +624,7 @@ if(window.matchMedia){
 }
 applyThemeIcon();
 
+renderChips();
 render();
 })();
 </script>

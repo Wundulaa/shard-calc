@@ -15,10 +15,17 @@ Modus ist markiert, dazu Gewinn und Farmzeit je Shard. Die Zahl färbt sich
 nach Zielwert: Grün ab Ziel-Stundenlohn, Gelb ab Mindest-Stundenlohn, Rot
 darunter.
 
-**Faire Preise je Shard-Größe.** Feste Tabelle für alle 13 Shard-Größen im
-Verkauf: Vollwert und der faire Preis-Rahmen — unten der Preis bei
-Ziel-Stundenlohn, oben bei Mindest-Stundenlohn, automatisch im besseren
-Modus. Zeile anklicken wählt die Größe auch im Preis-Check.
+**Faire Preise je Shard-Größe.** Tabelle für alle Shard-Größen im Verkauf:
+Vollwert und der faire Preis-Rahmen — unten der Preis bei Ziel-Stundenlohn,
+oben bei Mindest-Stundenlohn, automatisch im besseren Modus. Zeile anklicken
+wählt die Größe auch im Preis-Check.
+
+**Größe hinzufügen.** Der gestrichelte „+ Größe"-Chip öffnet ein Feld für
+eine neue Shard-Größe, die dauerhaft in Chips und Tabelle einsortiert wird
+(Browser-Speicher, bleibt über Neuladen hinweg erhalten). Eigene Größen
+tragen ein „eigene"-Label und ein × zum Entfernen. Das ist etwas anderes als
+„eigene Anzahl" daneben — die rechnet nur einmalig durch, ohne die Liste zu
+verändern.
 
 **Einstellungen** (Zahnrad oben rechts). Alle Grundwerte, normalerweise fix:
 Münzen je Ladung, Spawn-Takt mit und ohne Boost, Boost-Preis und -Dauer,
