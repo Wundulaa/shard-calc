@@ -61,12 +61,25 @@ h1,h2{font-family:"Big Shoulders Display","IBM Plex Sans",sans-serif; text-wrap:
 .eyebrow::before{content:""; width:7px; height:7px; background:var(--accent); flex:none; transform:rotate(45deg)}
 h1{font-size:clamp(30px,5.6vw,44px); font-weight:800; letter-spacing:-.005em; text-transform:uppercase; margin:0 0 8px}
 .lede{max-width:48ch; color:var(--ink-2); font-size:15px; margin:0}
-.headerbtns{display:flex; gap:8px; flex:none; margin-top:2px}
+.masthead-controls{display:flex; align-items:center; gap:16px; flex:none; margin-top:2px}
+.headerbtns{display:flex; gap:8px; flex:none}
 .iconbtn{flex:none; width:40px; height:40px; border:1px solid var(--line); background:var(--surface);
   color:var(--ink-2); font-size:18px; cursor:pointer; display:flex; align-items:center; justify-content:center;
   border-radius:0}
 .iconbtn:hover{color:var(--accent); border-color:var(--accent)}
 .iconbtn:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.hdr-cart{
+  flex:none; height:40px; display:flex; align-items:center; gap:9px;
+  padding:0 16px; border:1px solid var(--line); background:var(--surface); color:var(--ink);
+  font-family:"IBM Plex Mono",monospace; font-size:13px; font-weight:600; letter-spacing:.02em; cursor:pointer;
+}
+.hdr-cart:hover{border-color:var(--accent); color:var(--accent)}
+.hdr-cart:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+.hdr-cart-diamond{width:8px; height:8px; background:var(--accent); transform:rotate(45deg); flex:none}
+.hdr-cart-badge{
+  display:inline-flex; align-items:center; justify-content:center; min-width:20px; height:20px; padding:0 5px;
+  background:var(--accent); color:var(--surface); font-size:11px; font-weight:700; font-variant-numeric:tabular-nums;
+}
 
 /* ---- sections ---- */
 section{margin-bottom:40px; container-type:inline-size}
@@ -131,7 +144,14 @@ input[type=text]:focus-visible,select:focus-visible{outline:2px solid var(--acce
 .stat-sub{font-size:12.5px; color:var(--ink-2); margin-top:10px; font-family:"IBM Plex Mono",monospace}
 
 /* ---- table ---- */
-.scroll{overflow-x:auto; border:1px solid var(--line); background:var(--surface)}
+.scroll{
+  overflow-x:auto; border:1px solid var(--line); background:var(--surface);
+  scrollbar-width:thin; scrollbar-color:var(--line) transparent;
+}
+.scroll::-webkit-scrollbar{height:6px}
+.scroll::-webkit-scrollbar-track{background:transparent}
+.scroll::-webkit-scrollbar-thumb{background:var(--line)}
+.scroll::-webkit-scrollbar-thumb:hover{background:var(--muted)}
 table{border-collapse:collapse; width:100%; font-size:14px; min-width:480px}
 th,td{text-align:right; padding:10px 14px; border-bottom:1px solid var(--line-soft); white-space:nowrap}
 th:first-child,td:first-child{text-align:left}
@@ -142,8 +162,8 @@ tbody tr{cursor:pointer}
 tbody tr:hover td{background:var(--sunk)}
 tbody tr.sel td{background:var(--accent-soft)}
 tbody tr.sel td:first-child{box-shadow:inset 4px 0 0 var(--accent)}
-td.v{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums}
-td .sub{color:var(--muted); font-size:11.5px; margin-top:3px; display:block; font-variant-numeric:tabular-nums}
+.v{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums}
+.sub{color:var(--muted); font-size:11.5px; margin-top:3px; display:block; font-variant-numeric:tabular-nums}
 .dead{color:var(--muted)}
 
 /* ---- warenkorb ---- */
@@ -160,13 +180,20 @@ td .sub{color:var(--muted); font-size:11.5px; margin-top:3px; display:block; fon
   background:var(--accent); color:var(--surface); font-size:11px; font-weight:700; line-height:20px; text-align:center;
 }
 .cart-empty-hint{margin-top:14px}
-.cart-lines{margin-top:16px}
-.carttotal{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px;
-  margin-top:14px; font-size:13.5px; color:var(--ink-2)}
+.cartbox{margin-top:16px; border:1px solid var(--line); background:var(--surface)}
+.cartlines{display:flex; flex-direction:column}
+.cartline{display:flex; align-items:center; gap:10px; padding:9px 12px; border-bottom:1px solid var(--line-soft)}
+.cartline-n{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; font-weight:600; min-width:2.6em}
+.cartline-charges{margin-left:auto; font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums;
+  color:var(--ink-2); font-size:13px}
+.carttotal{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px;
+  padding:10px 12px; font-size:13px; color:var(--ink-2); background:var(--sunk); border-top:1px solid var(--line-soft)}
 .carttotal b{font-family:"IBM Plex Mono",monospace; color:var(--ink); font-variant-numeric:tabular-nums}
-.carttotal .reset{width:auto; padding:9px 14px}
-.cart-rahmen-box{margin-top:18px}
-.cart-pricebar{margin-top:18px; max-width:420px}
+.carttotal .reset{width:auto; padding:8px 12px}
+.cart-rahmen-block{margin-top:14px; padding:14px 16px; border:1px solid var(--line-soft)}
+.cart-rahmen-label{font-family:"IBM Plex Mono",monospace; font-size:10.5px; letter-spacing:.08em;
+  text-transform:uppercase; color:var(--muted); margin-bottom:8px}
+.cart-pricebar{margin-top:20px; max-width:420px}
 .cart-step{background:none; border:1px solid var(--line); color:var(--muted); width:24px; height:24px;
   font-family:"IBM Plex Mono",monospace; font-size:14px; cursor:pointer; line-height:1}
 .cart-step:hover{border-color:var(--accent); color:var(--accent)}
@@ -176,27 +203,12 @@ td .sub{color:var(--muted); font-size:11.5px; margin-top:3px; display:block; fon
 .cart-qty{display:inline-flex; align-items:center; gap:8px}
 .cart-qty b{min-width:1.4em; text-align:center}
 
-/* ---- warenkorb fab ---- */
-.fab{
-  position:fixed; left:20px; bottom:20px; z-index:42;
-  display:flex; align-items:center; gap:9px;
-  padding:13px 18px; border:1px solid var(--line); background:var(--surface); color:var(--ink);
-  font-family:"IBM Plex Mono",monospace; font-size:13px; font-weight:600; letter-spacing:.02em;
-  cursor:pointer; box-shadow:var(--shadow);
-}
-.fab:hover{border-color:var(--accent); color:var(--accent)}
-.fab:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
-.fab-diamond{width:8px; height:8px; background:var(--accent); transform:rotate(45deg); flex:none}
-.fab-badge{
-  display:inline-flex; align-items:center; justify-content:center; min-width:20px; height:20px; padding:0 5px;
-  background:var(--accent); color:var(--surface); font-size:11px; font-weight:700; font-variant-numeric:tabular-nums;
-}
-
 /* ---- settings drawer ---- */
 .backdrop{position:fixed; inset:0; background:rgba(10,10,8,.4); z-index:40}
 .drawer{position:fixed; top:0; right:0; height:100%; width:min(400px,100vw); background:var(--surface);
   border-left:1px solid var(--line); box-shadow:var(--shadow); z-index:41; padding:22px 22px 30px; overflow-y:auto;
   container-type:inline-size}
+.drawer table{min-width:0}
 .drawer-head{display:flex; justify-content:space-between; align-items:center; margin-bottom:6px}
 .drawer-head h2{font-size:19px; font-weight:800; text-transform:uppercase; letter-spacing:.01em}
 .drawer .hint{color:var(--muted); font-size:12.5px; margin:0 0 18px}
@@ -230,13 +242,15 @@ td .sub{color:var(--muted); font-size:11.5px; margin-top:3px; display:block; fon
       <h1>Spawner-Shard-Rechner</h1>
       <p class="lede">Preis eingeben, Stundenlohn sehen — und nachschlagen, was für jede Shard-Größe noch ein fairer Preis ist.</p>
     </div>
-    <div class="headerbtns">
-      <button class="iconbtn" id="btn-theme" type="button" aria-label="Dunkles Design aktivieren" aria-pressed="false">☾</button>
-      <button class="iconbtn" id="btn-settings" type="button" aria-label="Einstellungen öffnen">⚙</button>
+    <div class="masthead-controls">
+      <button class="hdr-cart" id="btn-cart" type="button" aria-label="Warenkorb öffnen" aria-expanded="false">
+        <span class="hdr-cart-diamond"></span>Warenkorb<span class="hdr-cart-badge" id="cart-fab-badge" hidden>0</span>
+      </button>
+      <div class="headerbtns">
+        <button class="iconbtn" id="btn-theme" type="button" aria-label="Dunkles Design aktivieren" aria-pressed="false">☾</button>
+        <button class="iconbtn" id="btn-settings" type="button" aria-label="Einstellungen öffnen">⚙</button>
+      </div>
     </div>
-    <button class="fab" id="btn-cart" type="button" aria-label="Warenkorb öffnen" aria-expanded="false">
-      <span class="fab-diamond"></span>Warenkorb<span class="fab-badge" id="cart-fab-badge" hidden>0</span>
-    </button>
   </div>
 </header>
 
@@ -299,23 +313,17 @@ td .sub{color:var(--muted); font-size:11.5px; margin-top:3px; display:block; fon
   <p class="hint cart-empty-hint" id="cart-empty">Noch leer — klicke oben auf eine Größe.</p>
 
   <div id="cart-filled" hidden>
-    <div class="scroll cart-lines">
-      <table>
-        <!-- written pre-uppercased: text-transform:uppercase turns ß into ẞ in current browsers, which renders badly -->
-        <thead><tr><th>GRÖSSE</th><th>Anzahl</th><th>Ladungen</th><th></th></tr></thead>
-        <tbody id="cart-rows"></tbody>
-      </table>
-    </div>
-    <div class="carttotal">
-      <span>Gesamt <b id="cart-total-n">0</b> Ladungen · Vollwert <b id="cart-vollwert">0</b> Münzen</span>
-      <button type="button" class="reset" id="cart-clear">Warenkorb leeren</button>
+    <div class="cartbox">
+      <div class="cartlines" id="cart-rows"></div>
+      <div class="carttotal">
+        <span>Gesamt <b id="cart-total-n">0</b> Ladungen · Vollwert <b id="cart-vollwert">0</b> Münzen</span>
+        <button type="button" class="reset" id="cart-clear">Warenkorb leeren</button>
+      </div>
     </div>
 
-    <div class="scroll cart-rahmen-box">
-      <table>
-        <thead><tr><th>Fairer Rahmen für den ganzen Warenkorb</th></tr></thead>
-        <tbody><tr><td class="v" id="cart-rahmen"></td></tr></tbody>
-      </table>
+    <div class="cart-rahmen-block">
+      <div class="cart-rahmen-label">Fairer Rahmen für den ganzen Warenkorb</div>
+      <div class="v" id="cart-rahmen"></div>
     </div>
 
     <div class="pricebar cart-pricebar">
@@ -569,16 +577,16 @@ function renderCartLines(c){
     var count=cart[n];
     totalN+=n*count;
     vollwert+=n*count*c.cpc;
-    return '<tr>'+
-      '<td><b>'+n+'</b></td>'+
-      '<td class="v"><span class="cart-qty">'+
+    return '<div class="cartline">'+
+      '<b class="cartline-n">'+n+'</b>'+
+      '<span class="cart-qty">'+
         '<button type="button" class="cart-step" data-dec="'+n+'" aria-label="einen '+n+'er entfernen">−</button>'+
         '<b>'+count+'</b>'+
         '<button type="button" class="cart-step" data-inc="'+n+'" aria-label="einen '+n+'er hinzufügen">+</button>'+
-      '</span></td>'+
-      '<td class="v">'+fmt(n*count,0)+'</td>'+
-      '<td><button type="button" class="cart-rowx" data-remove="'+n+'" aria-label="alle '+n+'er entfernen">×</button></td>'+
-    '</tr>';
+      '</span>'+
+      '<span class="cartline-charges">'+fmt(n*count,0)+' Ladungen</span>'+
+      '<button type="button" class="cart-rowx" data-remove="'+n+'" aria-label="alle '+n+'er entfernen">×</button>'+
+    '</div>';
   }).join('');
   $('cart-total-n').textContent=fmt(totalN,0);
   $('cart-vollwert').textContent=coins(vollwert);
